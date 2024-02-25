@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Task;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -116,6 +117,11 @@ Route::get('/tasks/{id}/edit', function ($id) {
         'task' => Task::findOrFail($id)
     ]);
 })->name('tasks.edit');
+
+//Route::delete('/tasks/{id}/delete', 'TaskController@destroy')->name('tasks.destroy');
+
+Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+
 
 Route::view('/tasks/create','create')->name('tasks.create');
 
