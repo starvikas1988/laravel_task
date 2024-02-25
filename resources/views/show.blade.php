@@ -11,4 +11,5 @@
 
   <p>{{ $task->created_at }}</p>
   <p>{{ $task->updated_at }}</p>
+  <a href="{{ route('tasks.index') }}">Back</a>
 @endsection

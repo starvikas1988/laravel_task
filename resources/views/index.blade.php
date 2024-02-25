@@ -14,6 +14,11 @@
     <p>Status: {{ ($task->completed)? 'Completed':'Incomplete' }}</p>
     <p>Created At: {{ $task->created_at }}</p>
     <p>Updated At: {{ $task->updated_at }}</p>
+     <!-- View link -->
+    <a href="{{ route('tasks.show', ['id' => $task->id]) }}">View</a>
+
+  <!-- Edit link -->
+    <a href="{{ route('tasks.edit', ['id' => $task->id]) }}">Edit</a>
     <p>-----------------------------------------------------</p>
       
     </div>
