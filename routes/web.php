@@ -118,7 +118,7 @@ Route::get('/tasks/{id}/edit', function ($id) {
     ]);
 })->name('tasks.edit');
 
-//Route::delete('/tasks/{id}/delete', 'TaskController@destroy')->name('tasks.destroy');
+//Route::delete('/tasks/{id}', 'TaskController@destroy')->name('tasks.destroy');
 
 Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 
