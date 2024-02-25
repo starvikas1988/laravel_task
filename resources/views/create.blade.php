@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-{{$errors}}
+{{-- {{$errors}} --}}
 <form method="post" action="{{route('tasks.store')}}">
     @csrf
     <div class="form-group">

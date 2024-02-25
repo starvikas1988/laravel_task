@@ -98,7 +98,8 @@ use Illuminate\Http\Request;
 Route::get('/task', function (){
     return view('index', [
         //'tasks' => \App\Models\Task::latest()->get()
-        'tasks' => \App\Models\Task::latest()->where('completed',true)->get()
+       // 'tasks' => \App\Models\Task::latest()->where('completed',true)->get()
+       'tasks' => Task::latest()->paginate(10)
     ]);
 })->name('tasks.index');
 
@@ -157,7 +158,15 @@ Route::put('/tasks/{id}', function ($id, Request $request) {
 
     return redirect()->route('tasks.show', ['id' => $task->id])
         ->with('success', 'Task updated successfully!');
+       // return redirect()->back()->with('success', 'Task updated successfully!');    
 })->name('tasks.update');
+
+// {{-- second way to use model and route|| all above routes are the first way to do the same task without using model directly.In second case we don't have to use the request object and pass the id in the callback function only the model instance will do the job --}}
+Route::put('tasks/{task}/toggle-complete', function (Task $task) {
+    $task->toggleComplete();
+
+    return redirect()->back()->with('success', 'Task updated successfully!');
+})->name('tasks.toggle-complete');
 
 Route::get('/', function () {
     return redirect()->route('tasks.index');
