@@ -9,6 +9,13 @@
     <p>{{ $task->long_description }}</p>
   @endif
 
+  {{-- Display the image --}}
+ 
+  @if ($task->image_path)
+    <img src="{{ asset($task->image_path) }}" alt="Uploaded Image" style="max-width: 200px; height: auto;">
+@endif
+
+
   <p>{{ $task->created_at }}</p>
   <p>{{ $task->updated_at }}</p>
   <p>

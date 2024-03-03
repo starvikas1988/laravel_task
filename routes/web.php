@@ -131,13 +131,19 @@ Route:: post('/tasks',function(Request $request){
     $data = $request->validate([
         'title' => 'required|max:255',
         'description' => 'required',
-        'long_description' => 'required'
+        'long_description' => 'required',
+        'image'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048'
     ]);
 
     $task = new Task;
+    $imagePath = $request->file('image')->store('public');
+
+    $imageUrl = Storage::url($imagePath);
+
     $task->title = $data['title'];
     $task->description = $data['description'];
     $task->long_description = $data['long_description'];
+    $task->image_path = $imageUrl;
     $task->save();
 
     return redirect()->route('tasks.show',['id' => $task->id])->with('success', 'Task created successfully!');

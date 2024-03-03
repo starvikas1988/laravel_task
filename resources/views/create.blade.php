@@ -13,7 +13,7 @@
 
 @section('content')
 {{-- {{$errors}} --}}
-<form method="post" action="{{route('tasks.store')}}">
+<form method="post" action="{{route('tasks.store')}}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="title" class="control-label">Title</label>
@@ -41,6 +41,11 @@
         @error('long_description')
         <p class="error-message">{{ $message }}</p>
         @enderror
+    </div>
+
+    <div class="form-group">
+        <label for="image" class="control-label">Image</label>
+        <input type="file" class="form-control" name="image" placeholder />
     </div>
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="submit" name="submit" />
